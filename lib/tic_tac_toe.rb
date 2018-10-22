@@ -23,6 +23,7 @@ def input_to_index(input)
 end 
 
 def move(board, index, character)
+<<<<<<< HEAD
   board[index] = character
 end
 
@@ -31,6 +32,22 @@ def position_taken?(board, index)
     return true
   else 
     return false
+=======
+  if valid_move?(board, index)
+    board[index] = character
+    return display_board(board)
+  else 
+    puts "That position is taken, please enter another number between 1-9"
+  end
+end
+
+  
+def position_taken?(board, index)
+  if board[index] == " " || board[index] == "" || board[index] == nil
+    return false
+  else 
+    return true
+>>>>>>> 71088db55e56e453f64510d576b77d1842cefc7f
   end
 end
 
@@ -44,13 +61,22 @@ def valid_move?(board, index)
 end 
 
 def turn(board)
+<<<<<<< HEAD
   puts "enter a number 1-9: " 
   i = (gets.strip)
+=======
+  puts "Plese enter a number 1-9: "
+  i = gets.strip
+>>>>>>> 71088db55e56e453f64510d576b77d1842cefc7f
   ix = input_to_index(i)
   char = current_player(board)
   if valid_move?(board, ix)
     move(board, ix, char)
   else
+<<<<<<< HEAD
+=======
+    puts "invalid input"
+>>>>>>> 71088db55e56e453f64510d576b77d1842cefc7f
     turn(board)
   end
 end
@@ -69,12 +95,17 @@ end
 def current_player(board)
   if turn_count(board) % 2 == 0
     "X"
+<<<<<<< HEAD
   else
+=======
+  elsif turn_count(board) == 0 || turn_count(board) % 3 == 0
+>>>>>>> 71088db55e56e453f64510d576b77d1842cefc7f
     "O"
   end
 end
 
 
+<<<<<<< HEAD
 def won?(board)
  WIN_COMBINATIONS.each do |comb|
    i1 = comb[0]
@@ -94,6 +125,8 @@ def won?(board)
  return false
 end
 
+=======
+>>>>>>> 71088db55e56e453f64510d576b77d1842cefc7f
 def full?(board)
   board.all? do |arr|
       arr == "X" || arr == "O"
@@ -105,7 +138,11 @@ def draw?(board)
 end
 
 def over?(board)
+<<<<<<< HEAD
   draw?(board) || won?(board) || full?(board)
+=======
+  draw?(board) || won?(board)
+>>>>>>> 71088db55e56e453f64510d576b77d1842cefc7f
 end
 
 def winner(board)
@@ -122,10 +159,36 @@ def winner(board)
   end
 end
 
+<<<<<<< HEAD
 def play(board)
   while !over?(board)
     turn(board)
     display_board(board)
+=======
+
+def won?(board)
+ WIN_COMBINATIONS.each do |comb|
+   i1 = comb[0]
+   i2 = comb[1]
+   i3 = comb[2]
+   
+   pos1 = board[i1]
+   pos2 = board[i2]
+   pos3 = board[i3]
+   
+   if pos1 == "X" && pos2 == "X" && pos3 == "X"
+     return comb
+   elsif pos1 == "O" && pos2 == "O" && pos3 == "O"
+     return comb
+   end
+ end
+ false
+end
+
+def play(board)
+  until over?(board)
+    turn(board)
+>>>>>>> 71088db55e56e453f64510d576b77d1842cefc7f
   end
   if won?(board)
     puts "Congratulations #{winner(board)}!"
